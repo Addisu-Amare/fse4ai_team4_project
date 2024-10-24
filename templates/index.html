@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Cancer Prediction by Vaibhav Hariramani</title>
+    <link rel="icon" href="../static/img/favicon1.ico">
+    <link rel="apple-touch-icon" href="../static/img/apple-touch-icon.png">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Poppins" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <style>
+        body {
+            background-image: url('../static/img/world.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+        h1, h2 {
+            text-align: center;
+            color: #ffcc00; /* Gold color for headings */
+        }
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            background-color: #28a745; /* Green button */
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .social-icons a {
+            margin: 0 10px;
+            color: white; 
+            font-size: 24px; 
+        }
+        .social-icons a:hover {
+            opacity: 0.7; /* Slightly transparent on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Breast Cancer Prediction Using XGBoost Classifier</h1>
+        <h2>Enter Fields Below</h2>
+        <form action="{{ url_for('predict')}}" method="post">
+            <!-- Input Fields -->
+            <input type="text" name="mean_radius" placeholder="Mean Radius" required />
+            <input type="text" name="mean_texture" placeholder="Mean Texture" required />
+            <input type="text" name="mean_perimeter" placeholder="Mean Perimeter" required />
+            <input type="text" name="mean_area" placeholder="Mean Area" required />
+            <input type="text" name="mean_smoothness" placeholder="Mean Smoothness" required />
+            <input type="text" name="mean_compactness" placeholder="Mean Compactness" required />
+            <input type="text" name="mean_concavity" placeholder="Mean Concavity" required />
+            <input type="text" name="mean_concave_points" placeholder="Mean Concave Points" required />
+            <input type="text" name="mean_symmetry" placeholder="Mean Symmetry" required />
+            <input type="text" name="mean_fractal_dimension" placeholder="Mean Fractal Dimension" required />
+            
+            <!-- Errors -->
+            <input type="text" name="radius_error" placeholder="Radius Error" required />
+            <input type="text" name="texture_error" placeholder="Texture Error" required />
+            
+            <!-- Worst Measurements -->
+            <input type="text" name="worst_radius" placeholder="Worst Radius" required />
+            
+            <!-- Submit Button -->
+            <div class="button_cont">
+                <button type="submit">Click Here to Predict</button>
+                <p style='color:#ff6347;'>Malignant (1)</p>
+                <p style='color:#1e90ff;'>Benign (0)</p>
+            </div>
+        </form>
+
+        <!-- Prediction Output -->
+        <div>
+            <center>
+                <h1>{{ prediction_text }}</h1>
+                <p>Dataset used:
+                    <a href="https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Diagnostic)" style='color:#ffcc00;'>CANCER.NET</a>
+                </p>
+                <!-- Additional Links -->
+                <p>Explanation:
+                    <a href='https://medium.com/geeky-bawa/end-to-end-deployment-of-breast-cancer-prediction-through-machine-learning-using-flask-5442ef4c586d' style='color:#ffcc00;'>Breast Cancer Classification using ML</a>
+                </p>
+                </center>
+        </div>
+
+        <!-- Footer -->
+        <div class='footer'>
+           <p>Made with ❤️ by Team Four 2024 </p>
+           <!-- Social Media Icons -->
+           <div class='social-icons'>
+               <a href=' ' class='fa fa-linkedin'></a>
+               <a href=' ' class='fa fa-github'></a>
+               <a href=' ' class='fa fa-medium'></a>
+               <!-- Add more social links as needed -->
+           </div>
+       </div>
+
+    </div>
+</body>
+</html>

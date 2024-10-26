@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>BREAST CANCER CLASSIFICATION APP</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Poppins" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <style>
+        body {
+            background-image: url('../static/img/skoltech.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 30px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.7);
+        }
+        h1, h2 {
+            text-align: center;
+            color: #ffcc00; /* Gold color for headings */
+        }
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        input[type="text"]:focus {
+            background-color: rgba(255, 255, 255, 0.4);
+            outline: none; /* Remove default outline */
+        }
+        button {
+            background-color: #28a745; /* Green button */
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease, transform 0.2s ease; /* Transition for hover effects */
+        }
+        button:hover {
+            background-color: #218838; /* Darker green on hover */
+            transform: translateY(-2px); /* Lift effect */
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .social-icons a {
+            margin: 0 15px;
+            color: white; 
+            font-size: 28px; 
+        }
+        .social-icons a:hover {
+            opacity: 0.7; /* Slightly transparent on hover */
+        }
+        .prediction-output {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .prediction-output h1 {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Breast Cancer Classifier App Using ML</h1>
+        <h2>Enter Fields Below</h2>
+        <form action="{{ url_for('predict')}}" method="post">
+            <!-- Input Fields -->
+            <input type="text" name="mean_radius" placeholder="Mean Radius" required />
+            <input type="text" name="mean_texture" placeholder="Mean Texture" required />
+            <input type="text" name="mean_perimeter" placeholder="Mean Perimeter" required />
+            <input type="text" name="mean_area" placeholder="Mean Area" required />
+            <input type="text" name="mean_smoothness" placeholder="Mean Smoothness" required />
+            <input type="text" name="mean_compactness" placeholder="Mean Compactness" required />
+            <input type="text" name="mean_concavity" placeholder="Mean Concavity" required />
+            <input type="text" name="mean_concave_points" placeholder="Mean Concave Points" required />
+            <input type="text" name="mean_symmetry" placeholder="Mean Symmetry" required />
+            <input type="text" name="mean_fractal_dimension" placeholder="Mean Fractal Dimension" required />
+
+           <!-- Errors -->
+           <input type='text' name='radius_error' placeholder='Radius Error' required />
+           <input type='text' name='texture_error' placeholder='Texture Error' required />
+           <input type='text' name='perimeter_error' placeholder='Perimeter Error' required />
+           <input type='text' name='area_error' placeholder='Area Error' required />
+           <input type='text' name='smoothness_error' placeholder='Smoothness Error' required />
+           <input type='text' name='compactness_error' placeholder='Compactness Error' required />
+           <input type='text' name='concavity_error' placeholder='Concavity Error' required />
+           <input type='text' name='concave_points_error' placeholder='Concave Points Error' required />
+           <input type='text' name='symmetry_error' placeholder='Symmetry Error' required />
+           <input type='text' name='fractal_dimension_error' placeholder='Fractal Dimension Error' required />
+
+           <!-- Worst Measurements -->
+           <input type='text' name='worst_radius' placeholder='Worst Radius' required />
+           <input type='text' name='worst_texture' placeholder='Worst Texture' required />
+           <input type='text' name='worst_perimeter' placeholder='Worst Perimeter' required />
+           <input type='text' name='worst_area' placeholder='Worst Area' required />
+           <input type='text' name='worst_smoothness' placeholder='Worst Smoothness' required />
+           <input type='text' name='worst_compactness' placeholder='Worst Compactness' required />
+           <input type='text' name='worst_concavity' placeholder='Worst Concavity' required />
+           <input type='text' name='worst_concave_points' placeholder='Worst Concave Points' required />
+           <input type='text' name='worst_symmetry' placeholder='Worst Symmetry' required />
+           <input type='text' name='worst_fractal_dimension' placeholder='Worst Fractal Dimension' required />
+
+           <!-- Submit Button -->
+           <div class='button_cont'>
+               <button type='submit'>Click Here to Predict</button>
+               <p style='color:#ff6347;'>Malignant (1)</p>
+               <p style='color:#1e90ff;'>Benign (0)</p>
+           </div>
+       </form>
+
+       <!-- Prediction Output -->
+       <div class='prediction-output'>
+           <center>
+               <h1>{{ prediction_text }}</h1>
+               <!-- Dataset link -->
+               <p>Dataset used:
+                   <a href='#'>CANCER.NET</a>
+               </p>
+               <!-- Additional Links -->
+               <p>Explanation:
+                   <a href='#'>Breast Cancer Classification using ML</a>
+               </p>
+           </center>
+       </div>
+
+       <!-- Footer -->
+       <div class='footer'>
+           <p>Made with ❤️ by Team Four ©2024</p>
+           <!-- Social Media Icons -->
+           <div class='social-icons'>
+               <!-- Add your social media links here -->
+               <!-- Example icons -->
+               <!-- Replace '#' with actual links -->
+               <a href='#'><i class="fa fa-linkedin"></i></a>
+               <a href='#'><i class="fa fa-github"></i></a>
+               <a href='#'><i class="fa fa-medium"></i></a>
+           </div>
+       </div>
+
+    </div>
+
+    <!-- Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</body>
+</html>

@@ -1,14 +1,35 @@
-# Use an official Python runtime as a parent image
-FROM python:3.8.5-slim
+# Base image for Python
+FROM python:3.8-slim AS base
 
-# Set the working directory in the container
-WORKDIR /usr/src/app
+# Set the working directory
+WORKDIR /app
 
-# Copy the current directory contents into the container at /usr/src/app
-COPY . .
+# Copy requirements file
+COPY requirements.txt .
 
-# Install any needed packages specified in requirements.txt
+# Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Run app.py when the container launches
-CMD ["python", "./app.py"]
+# Copy all necessary files
+COPY preprocessing.py .
+COPY training.py .
+COPY postprocessing.py .
+COPY app.py .
+COPY breast_cancer_detector.pickle .   
+COPY templates/ ./templates/
+
+# Preprocessing stage
+FROM base AS preprocessing
+RUN python preprocessing.py
+
+# Training stage
+FROM base AS training
+RUN python training.py
+
+# Postprocessing stage
+FROM base AS postprocessing
+RUN python postprocessing.py
+
+# Final stage for running the Flask app
+FROM base AS final
+CMD ["python", "app.py"]

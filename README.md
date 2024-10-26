@@ -88,19 +88,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Acknowledgments
 
 - This project uses data from [CANCER.NET](https://www.cancer.net).
-- Special thanks to all contributors and resources that helped in developing this application.
 ```
-
-### Explanation of Sections
-
-1. **Project Title**: A brief title describing what the project is about.
-2. **Prerequisites**: Lists software requirements needed to run the application.
-3. **Setup Instructions**: Step-by-step guide on how to set up and run the project locally using Docker.
-4. **Project Structure**: A tree view of your project's directory structure, which helps users understand how files are organized.
-5. **Usage**: Instructions on how to use the web application once it's running.
-6. **Makefile Targets**: Information on available commands in your Makefile for building and running specific stages of your application.
-7. **License**: Information about licensing (you can adjust this based on your actual license).
-8. **Acknowledgments**: Credits or references to external resources or contributors.
 
 ### Conclusion
 This `README.md` provides a comprehensive overview of Breast Cancer Classification App .If you have any more questions or need additional features implemented, feel free to ask!

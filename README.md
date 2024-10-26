@@ -5,6 +5,7 @@ This project focuses on classifying breast cancer using machine learning techniq
 
 ![Breast Cancer Classification](https://github.com/Addisu-Amare/fse4ai_team4_project/blob/main/Assets/app.jpg)
 ![Docker Run](https://github.com/Addisu-Amare/fse4ai_team4_project/blob/main/Assets/docker_run.jpg)
+![Output](https://github.com/Addisu-Amare/fse4ai_team4_project/blob/main/breast_cancer_classifier/output/confusion_matrix.png)
 
 ## Prerequisites
 

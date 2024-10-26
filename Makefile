@@ -1,29 +1,32 @@
-# Define variables
-IMAGE_NAME = my-python-app
-CONTAINER_NAME = my-python-container
+# Makefile for Breast Cancer Classification App
 
-# Build the Docker image
+# Variables
+IMAGE_NAME = breast-cancer-classifier
+CONTAINER_NAME = breast_cancer_app
+
+.PHONY: all build run clean preprocess train postprocess
+
+# Default target
+all: build run
+
+# Build the Docker image and show output for all stages (default)
 build:
 	docker build -t $(IMAGE_NAME) .
 
-# Run the Docker container
+# Build specific stages
+preprocess:
+	docker build --target preprocessing -t $(IMAGE_NAME) .
+
+train:
+	docker build --target training -t $(IMAGE_NAME) .
+
+postprocess:
+	docker build --target postprocessing -t $(IMAGE_NAME) .
+
+# Run the Docker container and show output
 run:
-	docker run --name $(CONTAINER_NAME) -d $(IMAGE_NAME)
+	docker run --rm -p 5000:5000 --name $(CONTAINER_NAME) $(IMAGE_NAME)
 
-# Stop the running container
-stop:
-	docker stop $(CONTAINER_NAME)
-
-# Remove the stopped container
-rm:
-	docker rm $(CONTAINER_NAME)
-
-# Clean up the image and container
-clean: stop rm
-	docker rmi $(IMAGE_NAME)
-
-# Remove all stopped containers and unused images
-prune:
-	docker system prune -f
-
-.PHONY: build run stop rm clean prune
+# Clean up any stopped containers (optional)
+clean:
+	docker rm -f $(CONTAINER_NAME) || true

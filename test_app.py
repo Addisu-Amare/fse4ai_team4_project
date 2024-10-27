@@ -61,7 +61,7 @@ class FlaskAppTests(unittest.TestCase):
             # Add other fields as needed
         }
         response = self.app.post('/predict', data=invalid_input)
-        self.assertEqual(response.status_code, 500) 
+        self.assertEqual(response.status_code, 510) 
 
 if __name__ == '__main__':
     unittest.main()

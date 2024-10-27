@@ -56,10 +56,7 @@ breast_cancer_classifier/
 ├── Makefile                       # Makefile for managing builds and runs
 ├── requirements.txt               # Python dependencies
 ├── app.py                         # Flask application
-├── preprocessing.py               # Data preprocessing script
-├── training.py                    # Model training script
-├── postprocessing.py              # Model evaluation script
-├── breast_cancer_detector.pickle   # Trained model file
+├── breast_cancer_detector.pickle  # Pretrained model file
 ├── templates/                     # Directory for HTML templates
 │   └── index.html                 # Main HTML template for the app
 └── static/                        # Directory for static files (CSS, images)
@@ -67,6 +64,12 @@ breast_cancer_classifier/
     │   └── style.css              # Stylesheet for the app
     └── img/                       # Image files
         ├── skoltech.jpg              # Background image
+└── breast_cancer_classifier/
+    ├── postprocessing.py          # Model evaluation script
+    ├── preprocessing.py           # Data preprocessing script
+    ├── training.py                # Model training script
+    └── data/
+        └── breast_cancer_data.csv # Row dataset
 ```
 
 ## Usage

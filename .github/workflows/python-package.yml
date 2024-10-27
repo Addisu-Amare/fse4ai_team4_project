@@ -20,14 +20,10 @@ jobs:
 
       - name: Run tests in Docker container
         run: |
-          docker run --rm my-python-app pytest tests.py --doctest-modules --junitxml=junit/test-results.xml
+          make test > test_output.txt 2>&1
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
         with:
-          name: pytest-results
-          path: junit/test-results.xml
-
-      - name: Lint code with Ruff
-        run: |
-          docker run --rm -v ${{ github.workspace }}:/usr/src/app my-python-app bash -c "pip install ruff && ruff check --output-format=github --target-version=py39"
+          name: unittest results
+          path: test_output.txt

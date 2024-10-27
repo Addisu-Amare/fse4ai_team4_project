@@ -36,15 +36,17 @@ Make sure you have the following installed:
    cd fse4ai_team4_project
    ```
 
-5. **Build the Docker Image:**
+5. **Start server with pretrained model**
+    ```bash
+    make
+    ```
+
+6. **You can Build and Run server separate:**
    ```bash
    make build
-   ```
-
-6. **Run the Application:**
-   ```bash
    make run
    ```
+
 
 ## Project Structure
 
@@ -74,11 +76,13 @@ breast_cancer_classifier/
 4. The result will be displayed below the form.
 
 ## Makefile Targets
-
+- `make`: Run consequently: `test, build, run`.
 - `make build`: Builds the Docker image.
 - `make run`: Runs the Flask application in a Docker container.
 - `make preprocess`: Runs only the preprocessing stage.
 - `make train`: Runs only the training stage.
+- `make train`: Runs only the training stage.
+- `make test`: Runs test
 - `make postprocess`: Runs only the postprocessing stage.
 - `make clean`: Cleans up any stopped containers.
 

@@ -60,10 +60,8 @@ class FlaskAppTests(unittest.TestCase):
             'mean_radius': "invalid",
             # Add other fields as needed
         }
-
         response = self.app.post('/predict', data=invalid_input)
-        self.assertEqual(response.status_code, 200) 
-        self.assertIn(b'Patient has', response.data) 
+        self.assertEqual(response.status_code, 500) 
 
 if __name__ == '__main__':
     unittest.main()

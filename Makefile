@@ -4,10 +4,10 @@
 IMAGE_NAME = breast-cancer-classifier
 CONTAINER_NAME = breast_cancer_app
 
-.PHONY: all build run clean preprocess train postprocess
+.PHONY: all build run clean preprocess train postprocess test
 
 # Default target
-all: build run
+all: test build run
 
 # Build the Docker image and show output for all stages (default)
 build:
@@ -22,6 +22,10 @@ train:
 
 postprocess:
 	docker build --target postprocessing -t $(IMAGE_NAME) .
+
+test:
+	docker build --target testing -t $(IMAGE_NAME) .	 
+	docker run --rm --name $(CONTAINER_NAME) $(IMAGE_NAME)
 
 # Run the Docker container and show output
 run:

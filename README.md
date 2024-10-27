@@ -41,7 +41,7 @@ Make sure you have the following installed:
     make
     ```
 
-6. **You can Build and Run separate:**
+6. **You can Build and Run server separate:**
    ```bash
    make build
    make run

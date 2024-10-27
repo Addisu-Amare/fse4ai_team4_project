@@ -11,25 +11,32 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy all necessary files
-COPY preprocessing.py .
-COPY training.py .
-COPY postprocessing.py .
+COPY ./breast_cancer_classifier/preprocessing.py .
+COPY ./breast_cancer_classifier/training.py .
+COPY ./breast_cancer_classifier/postprocessing.py .
+COPY ./breast_cancer_classifier/data ./data
 COPY app.py .
-COPY breast_cancer_detector.pickle .   
 COPY templates/ ./templates/
+COPY test_app.py .
 
 # Preprocessing stage
 FROM base AS preprocessing
-RUN python preprocessing.py
+CMD ["python", "-u", "preprocessing.py"]
 
 # Training stage
 FROM base AS training
-RUN python training.py
+CMD ["python", "-u", "training.py"]
 
 # Postprocessing stage
 FROM base AS postprocessing
-RUN python postprocessing.py
+CMD ["python", "-u", "postprocessing.py"]
+
+# Test final Flask app
+FROM base AS testing
+COPY breast_cancer_detector.pickle .   
+CMD ["python", "-u", "test_app.py"]
 
 # Final stage for running the Flask app
 FROM base AS final
-CMD ["python", "app.py"]
+COPY breast_cancer_detector.pickle .   
+CMD ["python", "-u", "app.py"]

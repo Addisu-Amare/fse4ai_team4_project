@@ -98,9 +98,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - This project uses data from [CANCER.NET](https://www.cancer.net).
 ```
 
-### Conclusion
+## Conclusion
 This `README.md` provides a comprehensive overview of Breast Cancer Classification App .If you have any more questions or need additional features implemented, feel free to ask!
-Citations:
+Reference:
 [1] https://www.youtube.com/watch?v=WGNI-k20GNo
 [2] https://philpep.org/blog/a-makefile-for-your-dockerfiles/
 [3] https://docs.docker.com/build/building/multi-stage/
